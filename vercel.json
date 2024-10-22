@@ -1,10 +1,10 @@
 {
    "version": 2,
-   "name": "nodejs",
+   "name": "express",
    "builds": [
       { "src": "app.js", "use": "@vercel/node" }
    ],
    "routes": [
-      { "src": "/(.*)", "dest": "/index.js" }
+      { "src": "/(.*)", "dest": "/app.js" }
    ]
 }
