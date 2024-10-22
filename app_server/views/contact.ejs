@@ -1,0 +1,121 @@
+<h1>Contact Us</h1>
+<div class="row">
+  <div class="col-md-6">
+    <form id="contactForm">
+      <!-- Name Field -->
+      <div class="form-group mb-2">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter your name"
+          required
+        />
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group mb-2">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <!-- Subject Field -->
+      <div class="form-group mb-2">
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          class="form-control"
+          id="subject"
+          placeholder="Enter the subject"
+          required
+        />
+      </div>
+
+      <!-- Message Field -->
+      <div class="form-group mb-2">
+        <label for="message">Message</label>
+        <textarea
+          class="form-control"
+          id="message"
+          rows="4"
+          placeholder="Type your message here..."
+          required
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary btn-block">
+        Send Message
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.445812214968!2d104.76146727485302!3d-2.9737082397985173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b766d8211462f%3A0xcc95d97476bf2dd8!2sUNIVERSITAS%20MDP!5e0!3m2!1sen!2sid!4v1727664194521!5m2!1sen!2sid"
+      width="100%"
+      height="380"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="rounded"
+    ></iframe>
+  </div>
+</div>
+
+<h2>Contact List</h2>
+<ul id="contactList"></ul>
+
+<script>
+  // Simpan data ke localStorage ketika tombol submit ditekan
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", function (e) {
+      e.preventDefault(); // Agar form tidak reload halaman setelah submit
+
+      // Ambil nilai dari input
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+
+      // Ambil daftar kontak lama dari localStorage, jika tidak ada data, gunakan array kosong
+      let contacts = JSON.parse(localStorage.getItem("contacts")) || []; 
+
+      // Tambahkan kontak baru ke daftar
+      contacts.push({ name, email, subject, message });
+
+      // Simpan kembali daftar kontak ke localStorage
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+
+      // Kosongkan form setelah submit
+      document.getElementById("contactForm").reset();
+
+      // Tampilkan daftar kontak yang sudah diupdate
+      displayContacts();
+    });
+
+  // Fungsi untuk menampilkan data dari localStorage
+  function displayContacts() {
+    const contactList = document.getElementById("contactList");
+    contactList.innerHTML = ""; // Kosongkan list sebelumnya
+
+    // Ambil data kontak dari localStorage
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    // Loop untuk menampilkan setiap kontak
+    contacts.forEach((contact) => {
+      contactList.innerHTML += `<li>Name: ${contact.name}, Email: ${contact.email}, Subject: ${contact.subject}, Message: ${contact.message}</li>`;
+    });
+  }
+
+  // Panggil fungsi untuk menampilkan kontak saat halaman pertama kali dimuat
+  window.onload = displayContacts;
+</script>

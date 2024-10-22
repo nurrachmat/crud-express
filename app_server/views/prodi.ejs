@@ -1,0 +1,15 @@
+<h1>Program Studi</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Prodi</th>
+    <th>Singkatan</th>
+    <th>Fakultas</th>
+  </tr>
+  <% prodi.forEach(data => { %>
+  <tr>
+    <td><%= data.nama %></td>
+    <td><%= data.singkatan %></td>
+    <td><%= data.fakultas %></td>
+  </tr>
+  <% }) %>
+</table>
