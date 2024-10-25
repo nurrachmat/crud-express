@@ -11,6 +11,7 @@ var indexRouter = require("./app_server/routes/index");
 var prodiRouter = require("./app_server/routes/prodi");
 var usersRouter = require("./app_server/routes/users");
 const fakultasRouter = require("./app_api/routes/fakultas");
+const prodiRouter = require("./app_api/routes/prodi");
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use("/", indexRouter);
 app.use("/prodi", prodiRouter);
 app.use("/users", usersRouter);
 app.use("/api/fakultas", fakultasRouter);
+app.use("/api/prodi", prodiRouter);
 
 // Connect to MongoDB
 connectDB();
