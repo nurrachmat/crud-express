@@ -35,6 +35,7 @@ const createProdi = async (req, res) => {
   const prodi = new Prodi({
     nama: req.body.nama,
     singkatan: req.body.singkatan,
+    fakultas_id: req.body.fakultas_id,
   });
 
   try {
@@ -64,6 +65,11 @@ const updateProdi = async (req, res) => {
     // Memperbarui singkatan prodi jika ada di request body
     if (req.body.singkatan != null) {
       prodi.singkatan = req.body.singkatan;
+    }
+
+    // Memperbarui fakultas_id jika ada di request body
+    if (req.body.fakultas_id != null) {
+      prodi.fakultas_id = req.body.fakultas_id;
     }
 
     // Menyimpan perubahan ke database
