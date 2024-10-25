@@ -5,7 +5,11 @@ const Prodi = require("../models/prodi");
 const getAllProdi = async (req, res) => {
   try {
     // Mengambil semua prodi dari database
-    const prodi = await Prodi.find();
+    // const prodi = await Prodi.find();
+
+    // Mengambil semua prodi dari database dan populate data fakultas berdasarkan fakultas_id
+    const prodi = await Prodi.find().populate("fakultas_id", "nama"); // Mengambil field 'nama' dari Fakultas
+
     // Mengirimkan respons dengan status 200 dan data prodi
     res.status(200).json(prodi);
   } catch (err) {
