@@ -1,41 +1,27 @@
-const index = (req, res) => {
-  const prodi = [
-    {
-      nama: "Sistem Informasi",
-      fakultas: "Fakultas Ilmu Komputer dan Rekayasa",
-      singkatan: "SI",
-    },
-    {
-      nama: "Informatika",
-      fakultas: "Fakultas Ilmu Komputer dan Rekayasa",
-      singkatan: "IF",
-    },
-    {
-      nama: "Manajemen Informatika",
-      fakultas: "Fakultas Ilmu Komputer dan Rekayasa",
-      singkatan: "MI",
-    },
-    {
-      nama: "Teknik Elektro",
-      fakultas: "Fakultas Ilmu Komputer dan Rekayasa",
-      singkatan: "TE",
-    },
-    {
-      nama: "Akuntansi",
-      fakultas: "Fakultas Ekonomi dan Bisnis",
-      singkatan: "IF",
-    },
-    {
-      nama: "Manajemen",
-      fakultas: "Fakultas Ekonomi dan Bisnis",
-      singkatan: "MJ",
-    },
-  ];
-  res.render("prodi", {
-    title: "Halaman Program Studi",
-    prodi,
-    layout: "main",
-  });
+// Mengimpor axios untuk melakukan HTTP request
+const axios = require("axios");
+
+const index = async (req, res) => {
+  try {
+    // Mendapatkan data prodi dari API eksternal
+    const response = await axios.get(
+      "https://crud-express-seven.vercel.app/api/prodi"
+    );
+
+    // Data prodi dari API
+    const prodi = response.data;
+
+    // Render halaman 'prodi' dengan data yang diperoleh dari API
+    res.render("prodi", {
+      title: "Halaman Program Studi",
+      prodi, // Data prodi dari API
+      layout: "main",
+    });
+  } catch (error) {
+    // Jika terjadi kesalahan saat mengambil data dari API
+    console.error(error.message);
+    res.status(500).send("Gagal mendapatkan data prodi dari API");
+  }
 };
 
 module.exports = { index };
