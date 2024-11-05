@@ -5,4 +5,14 @@
     <th>Singkatan</th>
     <th>Fakultas</th>
   </tr>
+  <% prodi.forEach(data => { %>
+  <tr>
+    <td><%= data.nama %></td>
+    <td><%= data.singkatan %></td>
+    <td>
+      <%= data.fakultas_id && data.fakultas_id.nama ? data.fakultas_id.nama :
+      'Belum ada fakultas' %>
+    </td>
+  </tr>
+  <% }) %>
 </table>

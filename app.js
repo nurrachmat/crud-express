@@ -7,10 +7,12 @@ const expressLayouts = require("express-ejs-layouts");
 const cors = require("cors"); // Import cors
 const connectDB = require("./app_api/models/db");
 
-var indexRouter = require("./app_server/routes/index");
-var prodiRouter = require("./app_server/routes/prodi");
-var usersRouter = require("./app_server/routes/users");
-const fakultasRouter = require("./app_api/routes/fakultas");
+const indexRouter = require("./app_server/routes/index");
+const fakultasRouter = require("./app_server/routes/fakultas");
+const prodiRouter = require("./app_server/routes/prodi");
+const usersRouter = require("./app_server/routes/users");
+
+const fakultasRouterApi = require("./app_api/routes/fakultas");
 const prodiRouterApi = require("./app_api/routes/prodi");
 
 var app = express();
@@ -28,10 +30,11 @@ app.use(expressLayouts);
 app.use(cors()); // Gunakan middleware cors
 
 app.use("/", indexRouter);
+app.use("/fakultas", fakultasRouter);
 app.use("/prodi", prodiRouter);
 app.use("/users", usersRouter);
 // API
-app.use("/api/fakultas", fakultasRouter);
+app.use("/api/fakultas", fakultasRouterApi);
 app.use("/api/prodi", prodiRouterApi);
 
 // Connect to MongoDB

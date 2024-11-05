@@ -14,7 +14,7 @@ const index = async (req, res) => {
     // Render halaman 'prodi' dengan data yang diperoleh dari API
     res.render("prodi", {
       title: "Halaman Program Studi",
-      prodi, // Data prodi dari API
+      prodi,
       layout: "main",
     });
   } catch (error) {
