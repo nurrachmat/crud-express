@@ -15,6 +15,7 @@ const usersRouter = require("./app_server/routes/users");
 const fakultasRouterApi = require("./app_api/routes/fakultas");
 const prodiRouterApi = require("./app_api/routes/prodi");
 const authRouterApi = require("./app_api/routes/auth");
+const mahasiswaRouterApi = require("./app_api/routes/mahasiswa");
 
 require("dotenv").config(); // Load environment variables
 
@@ -41,6 +42,7 @@ app.use("/users", usersRouter);
 app.use("/api/fakultas", fakultasRouterApi);
 app.use("/api/prodi", prodiRouterApi);
 app.use("/api/auth", authRouterApi);
+app.use("/api/mahasiswa", mahasiswaRouterApi);
 
 // Connect to MongoDB
 connectDB();
