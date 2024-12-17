@@ -31,8 +31,8 @@ router.put(
 // Mengatur rute DELETE untuk menghapus data fakultas berdasarkan ID
 router.delete(
   "/:id",
-  // authMiddleware,
-  // roleMiddleware("admin"),
+  authMiddleware,
+  roleMiddleware("admin"),
   fakultasController.deleteFakultas
 );
 
